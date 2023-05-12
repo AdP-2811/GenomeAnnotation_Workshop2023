@@ -8,44 +8,35 @@ Contact: katharina.hoff@uni-greifswald.de
 
 ## Cloning this repository
 
-Open a terminal window and enter (press enter key after typing):
+Open a terminal window, create a new directory for yourself and download the GenomeAnnotation_Workship2023.git:
 
 ```
+mkdir your_name_GA
+cd your_name_GA
 git clone https://github.com/KatharinaHoff/GenomeAnnotation_Workshop2023.git
 ```
 
 This will create a folder called `GenomeAnnotation_Workshop2023` in your home directory. This folder contains the JupyterNotebook for this course (GenomeAnnotation.ipynb).
 
-## Obtaining the Singularity Image File
-
-The organizers of the Cesky Krumlov Workshop on Genomics have already compiled a file called `genome_annotation.sif` for you. You find this file at `/home/genomics/workshop_materials/genome_annotation`. However, if you want to obtain the same image for using it after the course, you can do so as follows (with singularity-ce version 3.11.2, available from https://github.com/sylabs/singularity, find their installation instructions at https://github.com/sylabs/singularity/blob/main/INSTALL.md, make sure you are not using an older version of singularity, as this may cause problems):
-
-```
-singularity build genome_annotation.sif docker://katharinahoff/ceskykrumlov23-notebook:latest
-```
-
-## Displaying the JupyterNotebook on Genome Annotation with this Singularity Image
+## Opening the JupyterNotebook on Genome Annotation 
 
 You can run the image for JupyterNotebook display in any bash terminal from your home directory as follows:
 
 ```
-# execute from your user home directory, should not be a group drive
+# execute from your_name_GA directory
 singularity exec --cleanenv --bind /home/genomics/workshop_materials/genome_annotation:/home/genomics/workshop_materials/genome_annotation --bind ${PWD}:${PWD} --bind $PWD:/home/jovyan /home/genomics/workshop_materials/genome_annotation/genome_annotation.sif jupyter notebook --no-browser --ip=127.0.0.1
 ```
 
-The local directory `/home/genomics/workshop_materials` may only be available during the course on site at Cesky Krumlov's AWS instance. If you want to use the image after the course, you may want to remove this directory from the command above (explicitely, remove: `--bind /home/genomics/workshop_materials/genome_annotation:/home/genomics/workshop_materials/genome_annotation`). Also, you of course need to specify the true location of the image, modify the command if it does not reside at `/home/genomics/workshop_materials/genome_annotation/genome_annotation.sif`.
-
-It is vital that you mount `/home/jovyan` to a writable location. Otherwise, you will not be able to save your work. The command above will mount the current working directory to `/home/jovyan`. If you want to mount a different directory, replace `${PWD}` with the path to the directory you want to mount (this corresponds specifically to this part of the command: `--bind ${PWD}:/home/jovyan`).
-
-The flag `--cleanenv` makes sure that other environment variables/tools (e.g. Perl dependencies) installed on the host do not interfere with the image.
-
-This will display a link in your terminal that you may post into your web browser. The link will look something like this:
+This will display 3 links in your terminal. The links will look something like this:
 
 ```
 http://127.0.0.1:8888/?token=4aff4819888e4afd61a63b3015f8a1f816deea84efe2cd3f
 ```
+Open one of the links by right-clicking on it and say "open link". This will open a firefox web browser window. You should see the following:
 
-:bomb: The Docker container that is the foundation of this Singularity image file contains a license key for GeneMark-ETP that has an (unknown) expiration date (probably expiring less than a year from now). By using BRAKER1, BRAKER2, or BRAKER3 with any version of GeneMark-ES/ET/EP/ETP/S-T, you agree to the license terms of GeneMark-ES/ET/EP/ETP/S-T (terms available at http://exon.gatech.edu/GeneMark/license_download.cgi). If you want to use BRAKER1, BRAKER2, or BRAKER3 after the expiration date of the license key, we recommend that you use the official BRAKER container available from https://hub.docker.com/r/teambraker/braker3. That container will likely be updated with new license keys, in the future.
+![image](https://github.com/AdP-2811/GenomeAnnotation_Workshop2023/assets/133369539/439ea468-7b16-499e-aa8a-dcf6fe086a0e)
+
+Click on the folder to access the content. Double click to open the GenomeAnnotation.ipynb. Welcome to the starting point of this lab.
 
 
 ## Course contents
