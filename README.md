@@ -36,6 +36,7 @@ Open one of the links by right-clicking on it and say "open link". This will ope
 
 ![image](https://github.com/AdP-2811/GenomeAnnotation_Workshop2023/assets/133369539/439ea468-7b16-499e-aa8a-dcf6fe086a0e)
 
+DO NOT CLOSE YOUR TERMINAL! It's essential that you keep it open. 
 Click on the folder to access the content. Double click to open the GenomeAnnotation.ipynb. Welcome to the starting point of this lab.
 
 
