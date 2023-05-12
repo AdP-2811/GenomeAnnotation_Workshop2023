@@ -55,37 +55,7 @@ Click on the folder to access the content. Double click to open the GenomeAnnota
 
 ## Data sets
 
-If you want to execute the JupyterNotebooks, you will need data. At the Cesky Krumlov Workshop, these datasets have already been prepared for you at /home/genomics/workshop_materials/genome_annotation. If you want to use the JupyterNotebook after the course, you will need to download the data sets to your local device. Simply execute [obtain_data.sh](obtain_data.sh) in your terminal (e.g. `bash obtain_data.sh`). This will require **59 GB** of free space!
-
-## Moving from JupyterLab to SLURM
-
-The exact same container that is used for rendering our teaching materials with JupyterLab can be used on any HPC (that has singularity support) with a SLURM scheduler. In this case, you will not execute JupyterLab, but submit a task with SLURM for computation. Example for calling BRAKER3 with SLURM:
-
-### Script contents: braker3.sh
-
-```
-#!/bin/bash                                  
-#SBATCH -o braker.%j.%N.out
-#SBATCH -e braker.%j.%N.err
-#SBATCH --get-user-env
-#SBATCH --time=72:00:00
-#SBATCH -N 1 # number of nodes, BRAKER does not scale across multiple nodes
-#SBATCH -n 48 # number of threads on that node, BRAKER does not scale well to hundreds of threads, we often execute on 8-48 threads
-
-module load singularity
-
-(singularity exec -B $PWD:$PWD genome_annotation.sif braker.pl --genome=genome.fasta.masked --prot_seq=proteins.fa --bam=rnaseq.bam --threads 48 ) &> braker3.log
-```
-
-Any tasks from our JupyterNotebook cells can be implemented in such scripts.
-
-### Submit the script
-
-Simply submit the job with sbatch:
-
-```
-sbatch braker3.sh
-```
+If you want to execute the JupyterNotebooks, you will need data. At the Cesky Krumlov Workshop, these datasets have already been prepared for you at /home/genomics/workshop_materials/genome_annotation.
 
 ## Acknowledgements
 
